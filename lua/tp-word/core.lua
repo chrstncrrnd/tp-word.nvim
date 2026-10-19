@@ -1,6 +1,6 @@
 local M = {}
 
-local ns = vim.api.nvim_create_namespace("go-to-word")
+local ns = vim.api.nvim_create_namespace("tp-word")
 
 local prefix_location = {}
 
@@ -37,7 +37,7 @@ local function prefix_word(row, col, word_number)
   local prefix = get_prefix(word_number)
   prefix_location[prefix] = { row, col }
   vim.api.nvim_buf_set_extmark(0, ns, row, 0, {
-    virt_text = { { prefix, "GoToWordLabel" } },
+    virt_text = { { prefix, "TpWordLabel" } },
     virt_text_win_col = col,
   })
 end
@@ -68,7 +68,7 @@ local function clear_prefixes()
   vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
 end
 
-function M.go()
+function M.tp()
   -- local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   -- local top = vim.fn.line("w0")
   -- local bot = vim.fn.line("w$")

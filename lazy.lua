@@ -1,6 +1,6 @@
 return {
-  "chrstncrrnd/go-to-word.nvim",
+  "chrstncrrnd/tp-word.nvim",
   keys = {
-    { "<leader>ww", "<Plug>(GoToWord)", remap = true, desc = "Go to word" },
+    { "<leader>ww", "<Plug>(TpWord)", remap = true, desc = "Teleport to any word" },
   },
 }

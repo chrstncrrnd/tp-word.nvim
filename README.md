@@ -1,3 +1,4 @@
-# go-to-word.nvim
+# tp-word.nvim
 
-A neovim plugin to emulate Helix's `gw` functionality.
+Teleport to any word, a neovim plugin to emulate Helix's `gw` functionality.
+
