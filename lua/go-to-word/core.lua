@@ -9,6 +9,10 @@ local function read_key()
   if not ok then
     return nil
   end
+  -- if we type esc or anythign it just ends
+  if key:match("[a-z]") == nil then
+    return nil
+  end
   return key
 end
 
@@ -23,11 +27,13 @@ end
 local function get_prefix(word_number)
   local base = 97 -- a - 1
   local zeroth = word_number % 26
-  local first = ((word_number - zeroth) / 26) % 26
+  local first = math.floor(word_number / 26) % 26
   return string.char(base + first) .. string.char(base + zeroth)
 end
 
 local function prefix_word(row, col, word_number)
+  -- it is going to be unusual to have over 26*26 words, but just in case we can exit if we do
+  if word_number >= 26 * 26 then return end
   local prefix = get_prefix(word_number)
   prefix_location[prefix] = { row, col }
   vim.api.nvim_buf_set_extmark(0, ns, row, 0, {
@@ -76,9 +82,10 @@ function M.go()
   if not selected_prefix then return end
   local loc = prefix_location[selected_prefix]
   if loc then
-    print("Loc: ", loc.row, loc.col, selected_prefix, #prefix_location)
-    -- vim.api.nvim_win_set_cursor(0, { loc.row, loc.col })
+    vim.api.nvim_win_set_cursor(0, { loc[1] + 1, loc[2] })
   end
+  -- reset it
+  prefix_location = {}
 end
 
 return M
