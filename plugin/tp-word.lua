@@ -1,4 +1,4 @@
-vim.keymap.set({ "n", "v" }, "<Plug>(TpWord)", function()
+vim.keymap.set("n", "<Plug>(TpWord)", function()
   require("tp-word").tp()
 end, { desc = "Go to word" })
 
